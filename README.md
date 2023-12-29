@@ -148,8 +148,10 @@ GRUB_ENABLE_CRYPTODISK=y (Uncomment this)
 > [!CAUTION]
 > Now this is the most important line! Replace UUID with ctrl + U
 ```
-GRUB_CMDLINE_LINUX="cryptdevice=UUID:cryptroot root=/dev/mapper/vgname-root rootfstype=btrfs rootflags=subvol=@"
+GRUB_CMDLINE_LINUX="cryptdevice=UUID=[PASTE UUID HERE]:cryptroot root=/dev/mapper/vgname-root rootfstype=btrfs rootflags=subvol=@"
 ```
+
+For example: GRUB_CMDLINE_LINUX="cryptdevice=UUID=0d02ca7d-b4bd-47a8-8df8-70c972be025f:cryptroot root=/dev/mapper/vgname-root rootfstype=btrfs rootflags=subvol=@"
 ```
 grub-mkconfig -o /boot/grub/grub.cfg
 passwd
