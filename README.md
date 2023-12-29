@@ -1,5 +1,8 @@
+# Every Arch user has an install guide. This is mine.
 
-# Fdisk Configuration
+
+
+### Fdisk Configuration
 ```
 fdisk /dev/sda
 ```
@@ -111,9 +114,20 @@ pacman -S grub
 blkid -s UUID -o value /dev/sda2 >> /etc/default/grub
 
 nano /etc/default/grub
+```
+> now scroll down the document and copy the UUID by pressing ctrl + K
+```
 GRUB_ENABLE_CRYPTODISK=y (Uncomment this)
-GRUB_TIMEOUT=0 (Default is 5, but for faster boot you can change it to 0)
-GRUB_CMDLINE_LINUX="cryptdevice=UUID:cryptroot root=/dev/mapper/vgname-root rootfstype=btrfs rootflags=subvol=@", [Replace UUID with ctrl + U]
+```
+> [!TIP]
+> GRUB_TIMEOUT=0 (Default is 5, but for faster boot you can change it to 0)
+
+> [!CAUTION]
+> Now this is the most important line! Replace UUID with ctrl + U
+```
+GRUB_CMDLINE_LINUX="cryptdevice=UUID:cryptroot root=/dev/mapper/vgname-root rootfstype=btrfs rootflags=subvol=@"
+```
+```
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 passwd
