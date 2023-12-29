@@ -105,14 +105,14 @@ mkinitcpio -P
 
 ### Bootloader
 > [!TIP]
-> With this command and using ctrl + K and ctrl + U with nano you can easily copy the correct UUID. Go to the bottom of the file and copy it then paste where the UUID needed. If you are installing on SSH you can copy paste it.
+> With this command and using ctrl + K and ctrl + U with nano you can easily copy the correct UUID. Go to the bottom of the file and copy it (ctrl+k) then paste where the UUID needed. If you are installing on SSH you can copy paste it more easily.
 ```
 pacman -S grub
 blkid -s UUID -o value /dev/sda2 >> /etc/default/grub
 
 nano /etc/default/grub
 GRUB_ENABLE_CRYPTODISK=y (Uncomment this)
-GRUB_TIMEOUT=0
+GRUB_TIMEOUT=0 (Default is 5, but for faster boot you can change it to 0)
 GRUB_CMDLINE_LINUX="cryptdevice=UUID:cryptroot root=/dev/mapper/vgname-root rootfstype=btrfs rootflags=subvol=@", [Replace UUID with ctrl + U]
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
