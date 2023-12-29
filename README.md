@@ -173,8 +173,10 @@ passwd (Don't forget to set your root password)
 ### Network
 ```
 Pacman -S networkmanager
-systemctl enable NetworkManager
+systemctl enable NetworkManager < Capital letters
 ```
+> [!NOTE]  
+> From now you can exit chroot by typing exit and restart the computer by typing reboot. Don't forget to set up networkmanager.
 
 ### Users + Sudo
 ```
