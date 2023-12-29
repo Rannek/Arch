@@ -176,11 +176,11 @@ Pacman -S networkmanager
 systemctl enable NetworkManager < Capital letters
 ```
 > [!NOTE]  
-> From now you can exit chroot by typing exit and restart the computer by typing reboot. Don't forget to set up networkmanager.
+> From now you can exit chroot by typing exit and restart the computer by typing reboot. Don't forget to set up networkmanager. You can only login as root user for now.
 
 ### Users + Sudo
 ```
-useradd -m test
+useradd -m test (m is creating home directory)
 passwd test
 pacman -S sudo
 EDITOR=nano visudo
