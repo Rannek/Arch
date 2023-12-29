@@ -1,6 +1,29 @@
 # Every Arch user has an install guide. This is mine.
 This guide is tested on archlinux-2023.12.01-x86_64.iso
 
+## Enhanced Security with LUKS
+
+- **LUKS (Linux Unified Key Setup)**: Using LUKS for disk encryption is particularly beneficial if you're using a laptop. It encrypts your entire drive, meaning your data is secure even if your computer is lost or stolen.
+
+- **Data Protection**: With LUKS, there's no need to overwrite your data before selling or disposing of your computer. The encryption ensures that your data remains inaccessible without the correct passphrase.
+
+
+## Flexible File System with Btrfs
+
+- **Snapshots with Btrfs**: Btrfs (B-tree File System) allows you to create snapshots of your system. This feature is very good for backing up and restoring your system state, making system updates and changes less risky.
+
+- **Advanced Features**: Btrfs supports features like volume management, error detection, and self-repair capabilities, adding layers of robustness to your system.
+
+
+
+## Why Choose This Guide?
+
+- **Tailored for Arch Linux**: Arch Linux is known for its simplicity, efficiency, and customization capabilities. This guide leverages these strengths to provide you with a powerful and personalized computing experience.
+
+- **Step-by-Step Instructions**: Whether you're an old Linux user or new to Arch, this guide walks you through every step of the installation and setup process.
+
+### Let's start!
+
 ### Fdisk Configuration
 ```
 fdisk /dev/sda
