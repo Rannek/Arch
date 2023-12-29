@@ -26,6 +26,13 @@ This guide is tested on archlinux-2023.12.01-x86_64.iso
 
 - **Step-by-Step Instructions**: Whether you're an old Linux user or new to Arch, this guide walks you through every step of the installation and setup process.
 
+ ## Note
+
+This guide intentionally does not include a swap partition or swap file as part of the installation process. The primary reason for this is simplicity, aiming to provide a basic and straightforward installation experience. 
+In addition to not setting up swap, this guide also simplifies the installation process by not configuring locales and other detailed system settings. The focus is on delivering a streamlined and basic setup, ideal for users who prefer a minimal installation or for those new to Arch Linux.
+
+Users with specific needs can always add swap space post-installation.
+
 ### Let's start!
 
 ### Fdisk Configuration
