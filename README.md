@@ -173,7 +173,7 @@ useradd -m test
 passwd test
 pacman -S sudo
 EDITOR=nano visudo
-test ALL=(ALL) ALL <-- Add this to the end of the file.
+test ALL=(ALL) ALL <-- Add this to the end of the file, or the beginning.
 
 # For testing
 su - test
