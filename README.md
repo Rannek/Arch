@@ -4,7 +4,7 @@
 
 
 # Every Arch user has an install guide. This is mine.
-This guide has been tested with archlinux-2023.12.01-x86_64.iso using an Ethernet connection. Please note that different commands may be required for WiFi configurations.
+This guide is tested with archlinux-2023.12.01-x86_64.iso with an Ethernet connection. For WiFi setups, additional steps involving iwctl are necessary, as they require a different set of commands.
 ## Enhanced Security with LUKS
 
 - **LUKS (Linux Unified Key Setup)**: Using LUKS for disk encryption is particularly beneficial if you're using a laptop. It encrypts your entire drive, meaning your data is secure even if your computer is lost or stolen.
