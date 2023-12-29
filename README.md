@@ -1,6 +1,5 @@
 # Every Arch user has an install guide. This is mine.
-
-
+This guide is tested on archlinux-2023.12.01-x86_64.iso
 
 ### Fdisk Configuration
 ```
