@@ -1,6 +1,10 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Rannek/arch-guide/main/logo.png" alt="Arch Guide Logo"/>
+</p>
+
+
 # Every Arch user has an install guide. This is mine.
 This guide is tested on archlinux-2023.12.01-x86_64.iso
-
 ## Enhanced Security with LUKS
 
 - **LUKS (Linux Unified Key Setup)**: Using LUKS for disk encryption is particularly beneficial if you're using a laptop. It encrypts your entire drive, meaning your data is secure even if your computer is lost or stolen.
