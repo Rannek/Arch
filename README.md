@@ -1,6 +1,8 @@
 # Every Arch user has an install guide. This is mine.
 This guide is tested on archlinux-2023.12.01-x86_64.iso
 
+![KDE Desktop](https://raw.githubusercontent.com/Rannek/arch-guide/main/KDE.png)
+
 ## Enhanced Security with LUKS
 
 - **LUKS (Linux Unified Key Setup)**: Using LUKS for disk encryption is particularly beneficial if you're using a laptop. It encrypts your entire drive, meaning your data is secure even if your computer is lost or stolen.
