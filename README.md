@@ -29,9 +29,10 @@ This guide is tested on archlinux-2023.12.01-x86_64.iso
  ## Note
 
 This guide intentionally does not include a swap partition or swap file as part of the installation process. The primary reason for this is simplicity, aiming to provide a basic and straightforward installation experience. 
+
 In addition to not setting up swap, this guide also simplifies the installation process by not configuring locales and other detailed system settings. The focus is on delivering a streamlined and basic setup, ideal for users who prefer a minimal installation or for those new to Arch Linux.
 
-Users with specific needs can always add swap space post-installation.
+Users with specific needs can always add swap space and other things post-installation.
 
 ### Let's start!
 
