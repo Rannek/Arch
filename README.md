@@ -146,7 +146,7 @@ GRUB_ENABLE_CRYPTODISK=y (Uncomment this)
 > GRUB_TIMEOUT=0 (Default is 5, but for faster boot you can change it to 0)
 
 > [!CAUTION]
-> Now this is the most important line! Replace UUID with ctrl + U
+> Now this is the most important line!
 ```
 GRUB_CMDLINE_LINUX="cryptdevice=UUID=[PASTE UUID HERE]:cryptroot root=/dev/mapper/vgname-root rootfstype=btrfs rootflags=subvol=@"
 ```
