@@ -3,7 +3,8 @@
 </p>
 
 
-# Every Arch user has an install guide. This is mine.
+# Every Arch user has an install guide. This is mine. 
+## Tested on real hardware!
 This guide is tested with archlinux-2023.12.01-x86_64.iso with an Ethernet connection. For WiFi setups, additional steps involving iwctl are necessary, as they require a different set of commands.
 ## Enhanced Security with LUKS
 
@@ -35,6 +36,19 @@ In addition to not setting up swap, this guide also simplifies the installation 
 Users with specific needs can always add swap space and other things post-installation.
 
 ### Let's start!
+
+> [!CAUTION]
+> Instead of /dev/sda use the proper disk. You can list your disks by using **fdisk -l**
+> 
+> **ALWAYS DOUBLE CHECK BEFORE ANY COMMAND IF YOU HAVE MULTIPLE DISKS**
+
+For my install for example it is /dev/sda
+
+```
+Disk /dev/sda: 55.9 GiB, 60022480896 bytes, 117231408 sectors
+Disk model: KINGSTON SV300S3
+```
+
 
 ### Fdisk Configuration
 ```
@@ -125,6 +139,10 @@ mount /dev/sda1 /mnt/boot
 ```
 pacstrap /mnt base linux linux-firmware btrfs-progs base-devel nano
 ```
+> [!TIP]
+> If you installed any software before pacstrap (termux, or byobu for example) you may need to use
+> 
+> **pacman -Sy archlinux-keyring**
 
 ### Fstab
 ```
@@ -191,6 +209,9 @@ su - test
 sudo ls /root
 ```
 
+> [!NOTE]  
+> If you want to use SDDM you first need to create one user. So it displays it automatically.
+
 ### KDE + SDDM
 > [!TIP]
 > If you want a minimal installation, you can just install plasma-desktop.
@@ -207,6 +228,9 @@ systemctl enable sddm
 ```
 nano /etc/vconsole.conf
 KEYMAP=hu
+
+In KDE Konsole for examle: setxkbmap hu
+or in tty: loadkeys hu
 ```
 
 ### Timeshift
