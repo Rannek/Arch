@@ -233,10 +233,71 @@ In KDE Konsole for examle: setxkbmap hu
 or in tty: loadkeys hu
 ```
 
-### Timeshift
+## Timeshift
 ```
-btrfs subvolume list /
 pacman -S timeshift
 systemctl enable --now cronie
 systemctl start cronie
 ```
+
+### Edit your fstab at /mnt/fstab
+Example:
+```
+UUID=[Your UUID] / btrfs subvol=@,rw,noatime,autodefrag,ssd,compress=zstd 0 1  
+UUID=[Your UUID] /home btrfs subvol=@home,rw,noatime,autodefrag,ssd,compress=zstd 0 2
+```
+### Explanation of Parameters:
+- `UUID=[Your UUID]`: Replace `[Your UUID]` with the UUID of your Btrfs partition.
+- `subvol=@`: Specifies the subvolume to mount. Replace `@` with your specific subvolume name if it's different.
+- `rw`: Mounts the filesystem in read-write mode.
+- `noatime`: Disables updating the access time on files to improve performance.
+- `autodefrag`: Enables automatic defragmentation of the filesystem.
+- `ssd`: Optimizes for SSD usage (change to `nosdd` if not on an SSD).
+- `compress=zstd`: Uses Zstandard compression for efficient file storage.
+- `0 1`: Sets the dump and fsck order. Typically `0 1` for the root filesystem.
+### Using BtrFS
+To check subvolumes
+```
+sudo btrfs subvolume list /
+```
+
+## Managing Btrfs Space Usage and Deleting Subvolumes
+
+
+### 1. Enable Quotas for Btrfs
+To manage space efficiently, first enable quotas on the Btrfs filesystem:
+```bash
+sudo btrfs quota enable /
+```
+
+### 2. Rescan Quotas
+Initiate a rescan of the quotas. This ensures that the quota information is up to date:
+```bash
+sudo btrfs quota rescan -s /
+```
+
+### 3. Show Quota Groups
+Display the quota groups (qgroups) to see space usage:
+```bash
+sudo btrfs qgroup show -pcre /
+```
+
+### 4. Sort by Space Usage
+To find out which backup is using the most space, sort the qgroups by their exclusive space usage:
+```bash
+sudo btrfs qgroup show -pcre / | awk '{print $3, $0}' | sort -h | cut -d' ' -f2-
+```
+This command sequence does the following:
+- `awk '{print $3, $0}'`: Extracts the exclusive size and prints it alongside the entire line.
+- `sort -h`: Sorts the output in human-readable format.
+- `cut -d' ' -f2-`: Removes the exclusive size field, leaving the rest of the data.
+
+### 5. Delete a Subvolume by ID
+If you want to delete a subvolume by its ID, use the following command. Replace `[Your ID]` with the actual subvolume ID:
+```bash
+sudo btrfs subvolume delete --subvolid [Your ID]
+```
+
+**Note**: Be cautious with this operation, as deleting a subvolume is irreversible and can lead to data loss if performed incorrectly.
+
+
