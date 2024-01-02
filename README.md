@@ -240,7 +240,7 @@ systemctl enable --now cronie
 systemctl start cronie
 ```
 
-### Edit your fstab at /mnt/fstab
+### Edit your fstab at /etc/fstab
 Example:
 ```
 UUID=[Your UUID] / btrfs subvol=@,rw,noatime,autodefrag,ssd,compress=zstd 0 1  
