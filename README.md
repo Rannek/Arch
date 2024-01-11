@@ -301,3 +301,54 @@ sudo btrfs subvolume delete --subvolid [Your ID]
 **Note**: Be cautious with this operation, as deleting a subvolume is irreversible and can lead to data loss if performed incorrectly.
 
 
+# Configuring fail2ban
+
+If you have an SSH server installed, it is advisable to use SSH keys for authentication and also enable fail2ban.
+
+## Installation
+
+First, install fail2ban:
+
+```bash
+sudo pacman -S fail2ban
+```
+
+## Configuration
+
+Then, go to the `/etc/fail2ban` folder and make a file called `jail.local`:
+
+```bash
+nano jail.local
+```
+
+This is a very basic fail2ban configuration. You can configure it further. Here's an example configuration:
+
+```ini
+[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/sshd_auth.log
+maxretry = 2
+findtime = 300000
+bantime = -1
+```
+
+This configuration allows 2 login attempts before banning the IP address.
+
+## Managing fail2ban Service
+
+Restart and check the status of fail2ban:
+
+```bash
+systemctl restart fail2ban
+systemctl status fail2ban
+```
+
+## Logs and Status
+
+You can view the log at `/var/log/fail2ban.log` or check the status of a specific jail like `sshd`:
+
+```bash
+fail2ban-client status sshd
+```
