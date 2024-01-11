@@ -352,3 +352,48 @@ You can view the log at `/var/log/fail2ban.log` or check the status of a specifi
 ```bash
 fail2ban-client status sshd
 ```
+
+
+# My Favorite Terminal Applications
+
+A list of some of my favorite terminal applications and how to install and use them on systems using `pacman` package manager (like Arch Linux).
+
+## ttyd
+
+**ttyd** is a program that allows you to share your terminal over the internet.
+
+- Installation:
+
+    ```bash
+    sudo pacman -S ttyd
+    ```
+
+- Usage:
+
+    The default mode is readonly. For example, if you want to share your `top` command:
+
+    ```bash
+    ttyd top
+    ```
+
+## dool
+![dool](https://raw.githubusercontent.com/Rannek/arch-guide/main/dool.png)
+
+**dool** is great software for checking server status, CPU usage, etc., with a nice format.
+
+- Installation:
+
+    ```bash
+    sudo pacman -S dool
+    ```
+
+## nmap
+![nmap](https://raw.githubusercontent.com/Rannek/arch-guide/main/nmap.png)
+
+While there are simpler ways to check open ports on your computer, I just love **nmap** for checking open ports.
+
+- Usage:
+
+    ```bash
+    nmap -p- localhost
+    ```
