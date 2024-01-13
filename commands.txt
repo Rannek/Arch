@@ -1,0 +1,73 @@
+fdisk /dev/sda
+
+[Boot]
+n
+p
+1
+[Press Enter]
++512M
+t
+0c (W95 FAT 32 LBA)
+a
+
+[Root]
+n
+[Press Enter]
+[Press Enter]
+[Press Enter]
+[Press Enter]
+w
+
+[Formatting And Mounting]
+mkfs.fat -F32 /dev/sda1
+cryptsetup luksFormat /dev/sda2
+cryptsetup open /dev/sda2 cryptroot
+pvcreate /dev/mapper/cryptroot
+vgcreate vgname /dev/mapper/cryptroot
+lvcreate -l 100%FREE vgname -n root
+mkfs.btrfs /dev/mapper/vgname-root
+mount /dev/mapper/vgname-root /mnt
+btrfs subvolume create /mnt/@
+btrfs subvolume create /mnt/@home
+umount /mnt
+mount -o subvol=@ /dev/mapper/vgname-root /mnt
+mount -o subvol=@home /dev/mapper/vgname-root /mnt/home
+
+[Installing]
+pacstrap /mnt base linux linux-firmware btrfs-progs base-devel nano
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+pacman -Syy lvm2
+nano /etc/mkinitcpio.conf
+HOOKS=(encrypt btrfs lvm2) <- Add these to the uncommented hooks line.
+mkinitcpio -P
+pacman -S grub
+grub-install /dev/sda
+blkid -s UUID -o value /dev/sda2 >> /etc/default/grub
+nano /etc/default/grub
+GRUB_ENABLE_CRYPTODISK=y (Uncomment this)
+
+GRUB_CMDLINE_LINUX="cryptdevice=UUID=[PASTE UUID HERE]:cryptroot root=/dev/mapper/vgname-root rootfstype=btrfs rootflags=subvol=@"
+
+grub-mkconfig -o /boot/grub/grub.cfg
+passwd
+Pacman -S networkmanager
+systemctl enable NetworkManager
+
+[Sudo]
+useradd -m test (m is creating home directory)
+passwd test
+pacman -S sudo
+EDITOR=nano visudo
+test ALL=(ALL) ALL <-- Add this to the end of the file, or the beginning.
+
+# For testing
+su - test
+sudo ls /root
+
+[KDE + SDDM]
+pacman -S xorg
+pacman -S plasma-desktop
+pacman -S sddm
+systemctl enable sddm
+
